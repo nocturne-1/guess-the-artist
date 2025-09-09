@@ -13,7 +13,8 @@ let randId = randInt.toString();
 
 artBtn.addEventListener("click", async function fetchArt() {
     const urlOver = "https://api.artic.edu/api/v1/artworks/"
-    const url = urlOver.concat(randId);
+    const urlTot = urlOver.concat(randId);
+    const url = urlTot.concat("?fields=id,title,api_link,artist_title,image_id,date_display");
     try {
         const response = await fetch(url);
         if (!response.ok) {
