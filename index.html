@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Guess the Artist</title>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <link rel="stylesheet" href="style.css">
+        
+            <script src="script.js" defer></script>
+
+
+    </head>
+
+    <body>
+        <main>
+            <div class="container">
+                <div class="centered">Guess the Artist</div>
+            </div>
+            <div class="artwork">
+                <button id="loadArt">Load Artwork</button>
+                <img id="art">
+            </div>
+            <div class="guessing">
+                <p>Who is the artist of this work?</p>
+                <input type="text" id="guessInput" placeholder="Enter artist name">
+                <button id="submitGuess">Submit Guess</button>
+            </div>
+            <div id="guessesLeft">
+                <p></p>
+            </div>
+            <div class="previousGuesses">
+                <ol>
+                    <li id="firstGuess"></li>
+                    <li id="secondGuess"></li>
+                    <li id="thirdGuess"></li>
+                    <li id="fourthGuess"></li>
+                    <li id="fifthGuess"></li>
+                </ol>
+            </div>
+        </main>
+
+    </body>
