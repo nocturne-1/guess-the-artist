@@ -2,28 +2,51 @@
 artBtn = document.getElementById("loadArt");
 artworkImg = document.getElementById("artwork");
 
-function getRandomInt(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
-}
 
-let randInt = getRandomInt(0, 200000); 
-let randId = randInt.toString();
-
-artBtn.addEventListener("click", async function fetchArt() {
-    const urlOver = "https://api.artic.edu/api/v1/artworks/"
-    const urlTot = urlOver.concat(randId);
-    const url = urlTot.concat("?fields=id,title,api_link,artist_title,image_id,date_display");
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+function get_rand_artwork() {
+    let timestamp = Math.floor(Date.now() / 1000);
+    let requestArt = {
+        "resources": "artworks",
+        "fields": [
+            "id",
+            "title",
+            "artist_title",
+            "image_id", 
+            "date_display",
+            "medium_display"
+        ],
+        "boost": false,
+        "limit": 1,
+        "query": {
+            "function_score": {
+                "query": {
+                    "constant_score": {
+                        "filter": {
+                            "exists": {
+                                "field": "image_id"
+                            },
+                            "term": { "is_public_domain": true }
+                        }
+                    }
+                },
+                "boost_mode": "replace",
+                "random_score": {
+                    "field": "id",
+                    "seed": timestamp
+                }
+            }
         }
-        
-        const result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error('Error fetching art: ', error);
-    }
-});
+    };
+
+    const response = fetch("https://api.artic.edu/api/v1/artworks/search", {
+        method: "POST",
+        body: JSON.stringify(requestArt),
+        headers: { "Content-Type": "application/json" }
+    }).then(res => res.json())
+      .then(obj => obj.data[0])
+      .catch(e => console.error(e));
+
+    console.log(response);
+};
+
+artBtn.addEventListener("click", get_rand_artwork()); 
