@@ -50,4 +50,4 @@ function get_rand_artwork() {
     console.log(response);
 };
 
-artBtn.addEventListener("click", get_rand_artwork());
+get_rand_artwork();
