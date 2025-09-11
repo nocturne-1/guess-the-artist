@@ -22,6 +22,11 @@ function get_rand_artwork() {
             "function_score": {
                 "query": {
                     "bool": {
+                        "must": [
+                            {
+                            "match_all": {}
+                            }
+                        ],
                         "filter": [
                         {
                             "exists": {
@@ -33,14 +38,9 @@ function get_rand_artwork() {
                             "is_public_domain": true
                             }
                         }
-                        ],
-                        "must": [
-                            {
-                            "match_all": {}
-                            }
-                        ]
-                    }
-                },
+                    ]
+                }
+            },
             "boost_mode": "replace",
             "random_score": {
                 "field": "id",
