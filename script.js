@@ -21,12 +21,11 @@ function get_rand_artwork() {
         "query": {
             "function_score": {
                 "query": {
-                    "constant_score": {
-                        "filter": {
-                            "exists": {
-                                "field": "image_id"
-                            },
-                            "term": { "is_public_domain": true }
+                    "bool": {
+                        "must": [
+                            { "exists": { "field": "image_id" } },
+                            { "term": { "is_public_domain": true } }
+                            ]
                         }
                     }
                 },
@@ -36,8 +35,7 @@ function get_rand_artwork() {
                     "seed": timestamp
                 }
             }
-        }
-    };
+        };
 
     const response = fetch("https://api.artic.edu/api/v1/artworks/search", {
         method: "POST",
