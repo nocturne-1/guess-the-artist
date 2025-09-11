@@ -22,22 +22,34 @@ function get_rand_artwork() {
             "function_score": {
                 "query": {
                     "bool": {
-                        "must": [
-                            { "exists": { "field": "image_id" } },
-                            { "term": { "is_public_domain": true } }
-                            ]
+                        "filter": [
+                        {
+                            "exists": {
+                            "field": "image_id"
+                            }
+                        },
+                        {
+                            "term": {
+                            "is_public_domain": true
+                            }
                         }
+                        ],
+                        "must": [
+                            {
+                            "match_all": {}
+                            }
+                        ]
                     }
                 },
-                "boost_mode": "replace",
-                "random_score": {
-                    "field": "id",
-                    "seed": timestamp
+            "boost_mode": "replace",
+            "random_score": {
+                "field": "id",
+                "seed": timestamp
                 }
             }
-        };
-
-    const response = fetch("https://api.artic.edu/api/v1/artworks/search", {
+        }
+    };
+    return fetch("https://api.artic.edu/api/v1/artworks/search", {
         method: "POST",
         body: JSON.stringify(requestArt),
         headers: { "Content-Type": "application/json" }
@@ -51,4 +63,4 @@ function get_rand_artwork() {
 
 };
 
-get_rand_artwork();
+console.log(get_rand_artwork());
