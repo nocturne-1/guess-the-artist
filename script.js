@@ -21,35 +21,35 @@ function get_rand_artwork() {
         "query": {
             "function_score": {
                 "query": {
-                    "bool": {
-                        "must": [
-                            {
-                            "match_all": {}
-                            }
-                        ],
-                        "filter": [
-                        {
-                            "exists": {
-                            "field": "image_id"
-                            }
-                        },
-                        {
-                            "term": {
-                            "is_public_domain": true
+                    "constant_score": {
+                        "filter": {
+                            "bool": {
+                                "filter": [
+                                {
+                                    "exists": {
+                                    "field": "image_id"
+                                    }
+                                },
+                                {
+                                    "term": {
+                                    "is_public_domain": true
+                                    }
+                                }
+                                ]
                             }
                         }
-                    ]
-                }
-            },
-            "boost_mode": "replace",
-            "random_score": {
-                "field": "id",
-                "seed": timestamp
+                    }
+                },
+                "boost_mode": "replace",
+                "random_score": {
+                    "field": "id",
+                    "seed": timestamp
                 }
             }
         }
-    };
-    return fetch("https://api.artic.edu/api/v1/artworks/search", {
+    };  
+
+    return fetch("https://api.artic.edu/api/v1/search", {
         method: "POST",
         body: JSON.stringify(requestArt),
         headers: { "Content-Type": "application/json" }
