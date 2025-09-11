@@ -51,10 +51,10 @@ function get_rand_artwork() {
 };
 
 artBtn.addEventListener("click", function loadImg() {
-    get_rand_artwork()
-        .then(response => {
-            if (!response) throw new Error("No artwork found");
-            const url = `https://www.artic.edu/iiif/2/${response.image_id}/full/843,/0/default.jpg`;
+    const result = get_rand_artwork()
+        .then(result => {
+            if (!result) throw new Error("No artwork found");
+            const url = `https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`;
             art.innerHTML = `<img src="${url}" alt="Random Artwork">`;
         })
         .catch(e => {
