@@ -44,10 +44,13 @@ function get_rand_artwork() {
         body: JSON.stringify(requestArt),
         headers: { "Content-Type": "application/json" }
     }).then(res => res.json())
-      .then(obj => obj.data[0])
+      .then(obj => {
+        console.log("Full API Response: ", obj);
+        console.log("First Artwork: ", obj.data[0]);
+        return obj.data[0];
+    })
       .catch(e => console.error(e));
 
-    console.log(response);
 };
 
 get_rand_artwork();
