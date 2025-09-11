@@ -1,6 +1,7 @@
 //script.js
-artBtn = document.getElementById("loadArt");
-artworkImg = document.getElementById("artwork");
+let artBtn = document.getElementById("loadArt");
+let artworkImg = document.getElementById("artwork");
+let art = document.getElementById("artImg");
 
 
 function get_rand_artwork() {
@@ -49,4 +50,10 @@ function get_rand_artwork() {
     console.log(response);
 };
 
-artBtn.addEventListener("click", get_rand_artwork()); 
+artBtn.addEventListener("click", function loadImg() {
+    get_rand_artwork().then(response => {
+        const url = `https://www.artic.edu/iiif/2/${response.image_id}/full/843,/0/default.jpg`;
+        art.innerHTML = `<img src="${url}" alt="Random Artwork">`;
+    }); 
+});
+
