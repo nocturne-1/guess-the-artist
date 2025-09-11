@@ -1,7 +1,7 @@
 //script.js
 let artBtn = document.getElementById("loadArt");
 let artworkImg = document.getElementById("artwork");
-let art = document.getElementById("artImg");
+let art = document.getElementById("artImgContainer");
 
 
 function get_rand_artwork() {
@@ -54,13 +54,18 @@ function get_rand_artwork() {
         body: JSON.stringify(requestArt),
         headers: { "Content-Type": "application/json" }
     }).then(res => res.json())
-      .then(obj => {
-        console.log("Full API Response: ", obj);
-        console.log("First Artwork: ", obj.data[0]);
-        return obj.data[0];
-    })
+      .then(obj => obj.data[0])
       .catch(e => console.error(e));
 
 };
 
-console.log(get_rand_artwork());
+artBtn.addEventListener("click", async () => {
+    let result = await get_rand_artwork();
+    console.log(result);
+    let imgUrl = `https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`;
+    
+    const loadImg = document.createElement("loadImg");
+    loadImg.innerHTML = `<img src=${imgUrl} alt="Random Artwork">`;
+    art.append(loadImg);
+
+})
