@@ -51,9 +51,16 @@ function get_rand_artwork() {
 };
 
 artBtn.addEventListener("click", function loadImg() {
-    get_rand_artwork().then(response => {
-        const url = `https://www.artic.edu/iiif/2/${response.image_id}/full/843,/0/default.jpg`;
-        art.innerHTML = `<img src="${url}" alt="Random Artwork">`;
-    }); 
+    get_rand_artwork()
+        .then(response => {
+            if (!response) throw new Error("No artwork found");
+            const url = `https://www.artic.edu/iiif/2/${response.image_id}/full/843,/0/default.jpg`;
+            art.innerHTML = `<img src="${url}" alt="Random Artwork">`;
+        })
+        .catch(e => {
+            console.error("Error loading artwork:", e);
+            art.innerHTML = "<p>Failed to load artwork. Try again please.</p>";
+        });
+
 });
 
