@@ -7,7 +7,10 @@ let art = document.getElementById("artImgContainer");
 let submitBtn = document.getElementById("submitGuess");
 let guesesList = document.getElementById("guessesList");
 let popup = document.getElementById("popup");
+let showInstructions = document.getElementById("showInstructions");
+let instructionPopup = document.getElementById("instructionPopup");
 let closePopupBtn = document.getElementById("closepopup");
+let closeInstructionBtn = document.getElementById("closeInstructions");
 
 // Get and display a random artwork from the Art Institute of Chicago API
 function get_rand_artwork() {
@@ -109,5 +112,8 @@ submitBtn.addEventListener("click", () => {
 
 })
 
+showInstructions.addEventListener("click", () => {
+    instructionPopup.classList.add("open-popup")
+});
 
 
