@@ -1,9 +1,15 @@
 //script.js
+
+// Accessing HTML elements
 let artBtn = document.getElementById("loadArt");
 let artworkImg = document.getElementById("artwork");
 let art = document.getElementById("artImgContainer");
+let submitBtn = document.getElementById("submitGuess");
+let guesesList = document.getElementById("guessesList");
+let popup = document.getElementById("popup");
+let closePopupBtn = document.getElementById("closepopup");
 
-
+// Get and display a random artwork from the Art Institute of Chicago API
 function get_rand_artwork() {
     let timestamp = Math.floor(Date.now() / 1000);
     let requestArt = {
@@ -59,8 +65,14 @@ function get_rand_artwork() {
 
 };
 
+let artist;
+
 artBtn.addEventListener("click", async () => {
+    submitBtn.disabled = false;
+    guessesList.innerHTML = "";
+    art.innerHTML = "";
     let result = await get_rand_artwork();
+    artist = result.artist_title.toLowerCase();
     console.log(result);
     let imgUrl = `https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`;
     
@@ -69,3 +81,33 @@ artBtn.addEventListener("click", async () => {
     art.append(loadImg);
 
 })
+
+// Displaying guesses and win popup
+
+openPopup = () => {
+    popup.classList.add("open-popup")
+    submitBtn.disabled = true;
+}
+
+closePopupBtn.addEventListener("click", () => {
+    popup.classList.remove("open-popup")
+})
+
+let i = 0;
+submitBtn.addEventListener("click", () => {
+    let guess = document.getElementById("guessInput").value;
+    const guessItem = document.createElement("guessItem");
+    guessItem.innerHTML = `<li>${guess}</li>`;
+    guessesList.append(guessItem);
+    if (guess.toLowerCase() === artist) {
+        openPopup();
+    }
+    i += 1;
+    if (i >= 5) {
+        submitBtn.disabled = true;
+    }
+
+})
+
+
+
