@@ -116,4 +116,6 @@ showInstructions.addEventListener("click", () => {
     instructionPopup.classList.add("open-popup")
 });
 
-
+closeInstructionBtn.addEventListener("click", () => {
+    instructionPopup.classList.remove("open-popup")
+});

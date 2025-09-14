@@ -98,6 +98,15 @@ header {
     transition: transform 0.4s, top 0.4s;
 }
 
+.instructionPopup button {
+    left: 90%;
+    margin-bottom: 50px;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
 .open-popup {
     visibility: visible;
     top: 5px;
