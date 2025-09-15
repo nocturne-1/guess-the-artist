@@ -102,7 +102,12 @@ submitBtn.addEventListener("click", () => {
     const guessItem = document.createElement("guessItem");
     guessItem.innerHTML = `<li>${guess}</li>`;
     guessesList.append(guessItem);
-    if (guess.toLowerCase() === artist) {
+    if (artist.includes("Style of ")) {
+        artist = artist.replace("Style of ", "").trim();
+    }
+    let artistLastName = artist.split(" ").slice(1,).join(" ");
+    
+    if ((guess.toLowerCase() === artist) || (guess.toLowerCase() === artistLastName)) {
         openPopup();
     }
     i += 1;
