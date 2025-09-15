@@ -90,7 +90,7 @@ artBtn.addEventListener("click", async () => {
 
 // Displaying guesses and win popup
 
-openPopup = () => {
+const openPopup = () => {
     popup.classList.add("open-popup")
     popupSeeMore.innerHTML = `<button id="moreArt">See More Art by ${cased_artist}</button>`;
     submitBtn.disabled = true;
@@ -129,4 +129,4 @@ closeInstructionBtn.addEventListener("click", () => {
     instructionPopup.classList.remove("open-popup")
 });
 
-export { cased_artist };
+localStorage.setItem("currentArtist", cased_artist);
