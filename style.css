@@ -19,6 +19,8 @@
     font-display: swap;
 }
 
+/* General styling */
+
 header {
     width: 100%;
     height: 300px;
@@ -32,6 +34,8 @@ img {
     object-fit: cover;
     object-position: center;
 }
+
+/* Header styling */
 
 .container {
     position: relative;
@@ -86,7 +90,20 @@ img {
     transition: transform 0.4s, top 0.4s;
 }
 
-.popup button {
+#moreArt {
+    position: absolute;
+    bottom: 20px;
+    left: 45%;
+    transform: translate(-45%, 0%);
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-family: 'Gelineos', serif;
+    text-decoration: underline;
+
+}
+
+#closepopup {
     position: absolute;
     top: 0px;
     left: 90%;

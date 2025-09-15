@@ -7,6 +7,7 @@ let art = document.getElementById("artImgContainer");
 let submitBtn = document.getElementById("submitGuess");
 let guesesList = document.getElementById("guessesList");
 let popup = document.getElementById("popup");
+let popupSeeMore = document.getElementById("popupSeeMore");
 let showInstructions = document.getElementById("showInstructions");
 let instructionPopup = document.getElementById("instructionPopup");
 let closePopupBtn = document.getElementById("closepopup");
@@ -68,6 +69,7 @@ function get_rand_artwork() {
 
 };
 
+let cased_artist;
 let artist;
 
 artBtn.addEventListener("click", async () => {
@@ -75,6 +77,7 @@ artBtn.addEventListener("click", async () => {
     guessesList.innerHTML = "";
     art.innerHTML = "";
     let result = await get_rand_artwork();
+    cased_artist = result.artist_title;
     artist = result.artist_title.toLowerCase();
     console.log(result);
     let imgUrl = `https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`;
@@ -89,6 +92,7 @@ artBtn.addEventListener("click", async () => {
 
 openPopup = () => {
     popup.classList.add("open-popup")
+    popupSeeMore.innerHTML = `<button id="moreArt">See More Art by ${cased_artist}</button>`;
     submitBtn.disabled = true;
 }
 
@@ -124,3 +128,5 @@ showInstructions.addEventListener("click", () => {
 closeInstructionBtn.addEventListener("click", () => {
     instructionPopup.classList.remove("open-popup")
 });
+
+export { cased_artist };
