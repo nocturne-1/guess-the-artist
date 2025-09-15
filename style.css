@@ -18,6 +18,13 @@ header {
     border-bottom: 3px solid black;
 }
 
+img {
+    width: 843px;
+    max-height: 700px;
+    object-fit: cover;
+    object-position: center;
+}
+
 .container {
     position: relative;
     text-align: center;
@@ -80,8 +87,8 @@ header {
 }
 
 .instructionPopup {
-    width: 600px;
-    height: 800px;
+    width: 700px;
+    height: 400px;
     background: #fff;
     border: 3px solid black;
     border-radius: 6px;
@@ -92,19 +99,33 @@ header {
     text-align: center;
     padding: 0 30px 30px;
     color: #333;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
     visibility: hidden;
     transition: transform 0.4s, top 0.4s;
 }
 
 .instructionPopup button {
+    position: absolute;
+    top: 0px;
     left: 90%;
-    margin-bottom: 50px;
-    padding: 10px 0;
+    padding: 5px 0;
     background: none;
     border: none;
     color: #fff;
+}
+
+.instructionPopup h2 {
+    font-size: 50px;
+    font-family: 'Melforine', serif;
+    color: black;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.instructionPopup p {
+    font-size: 20px;
+    line-height: 1.6;
+
 }
 
 .open-popup {
