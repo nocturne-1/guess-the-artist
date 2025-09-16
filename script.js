@@ -6,6 +6,7 @@ let artworkImg = document.getElementById("artwork");
 let art = document.getElementById("artImgContainer");
 let submitBtn = document.getElementById("submitGuess");
 let guesesList = document.getElementById("guessesList");
+let guessesLeft = document.getElementById("guessesLeft");
 let correctArtist = document.getElementById("correctArtist");
 let popup = document.getElementById("popup");
 let popupSeeMore = document.getElementById("popupSeeMore");
@@ -122,6 +123,26 @@ submitBtn.addEventListener("click", () => {
     const guessItem = document.createElement("guessItem");
     guessItem.innerHTML = `<li>${guess}</li>`;
     guessesList.append(guessItem);
+    i += 1;
+    let left = 5 - i;
+    let leftNum;
+    if (left === 0) {
+        leftNum = "zero"
+
+    }
+    else if (left === 1) {
+        leftNum = "one"
+    }
+    else if (left === 2) {
+        leftNum = "two"
+    }
+    else if (left === 3) {
+        leftNum = "three"
+    }
+    else if (left === 4) {
+        leftNum = "four"
+    }
+    guessesLeft.innerHTML = `<p>You have ${leftNum} guessses left.</p>`
     if (artist.includes("Style of ")) {
         artist = artist.replace("Style of ", "").trim();
     }
@@ -134,7 +155,6 @@ submitBtn.addEventListener("click", () => {
     if ((guess.toLowerCase() === artist) || (guess.toLowerCase() === artistLastName)) {
         openPopup();
     }
-    i += 1;
     if (i >= 5) {
         submitBtn.disabled = true;
         openLosePopup();

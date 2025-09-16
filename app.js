@@ -1,5 +1,6 @@
 //app.js
 let moreArt = document.getElementById("moreArtContainer");
+let moreArtContainer = document.getElementById("moreArtContainerContainer");
 const true_artist = localStorage.getItem("currentArtist");
 
 console.log(true_artist);
@@ -46,12 +47,13 @@ async function display_art() {
     let imgUrl_3 = `https://www.artic.edu/iiif/2/${img_id_3}/full/843,/0/default.jpg`;
 
     const moreArt1 = document.createElement("moreArt1");
-    moreArt1.innerHTML = `<img src=${imgUrl_1} alt="Artwork">`;
+    moreArt1.innerHTML = `<img id="img1" src=${imgUrl_1} alt="Artwork">`;
     const moreArt2 = document.createElement("moreArt2");
-    moreArt2.innerHTML = `<img src=${imgUrl_2} alt="Artwork">`;
+    moreArt2.innerHTML = `<img id="img2" src=${imgUrl_2} alt="Artwork">`;
     const moreArt3 = document.createElement("moreArt3");
-    moreArt3.innerHTML = `<img src=${imgUrl_3} alt="Artwork">`;
-    moreArt.append(moreArt1, moreArt2, moreArt3);
+    moreArt3.innerHTML = `<img id="img3" src=${imgUrl_3} alt="Artwork">`;
+    moreArt.append(moreArt1, moreArt2);
+    moreArtContainer.append(moreArt3);
 }
 
 display_art();

@@ -35,6 +35,80 @@ img {
     object-position: center;
 }
 
+/* Styling for the body of the page */
+.bigContainer {
+    display: flex;
+    align-items: stretch;
+}
+
+.rightdoc {
+    text-align: center;
+}
+
+.artwork {
+    text-align: center;
+    width: 843px;
+    margin-left: 30px;
+    margin-right: 100px;
+}
+
+/* Styling the guesses */
+
+.guessing {
+    font-size: 25px;
+    font-family: "Melforine", sans-serif;
+    color: black;
+    margin-top: 70px;
+}
+
+.previousGuesses {
+    font-size: 22px;
+    font-family: "Melforine", serif;
+    margin-top: 30px;
+}
+
+ul {
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+ul li {
+    font-size: 22px;
+    font-family: "Melforine", serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#guessesLeft {
+    font-size: 22px;
+    font-family: "Melforine", serif;
+    margin-top: 20px;
+}
+
+#guessInput {
+    font-size: 22px;
+    font-family: "Gelineos", serif;
+    color: black;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+    margin-top: 30px;
+
+}
+
+#submitGuess {
+    font-size: 22px;
+    font-family: "Gelineos", serif;
+    color: black;
+    background: none;
+    border-radius: 2px;
+    width: fit-content;
+    padding: 5px 5px;
+    height: fit-content;
+}
+
 /* Header styling */
 
 .container {
@@ -54,7 +128,7 @@ img {
     white-space: nowrap;
 }
 
-/* Styling for button */
+/* Styling for buttons */
 .instructions {
     position: absolute;
     top: 230px;
@@ -73,7 +147,18 @@ img {
     z-index: 10;
 }
 
-/* Styling for popup box */
+#loadArt {
+    font-size: 25px;
+    font-family: "Melforine", sans-serif;
+    color: black;
+    background: none;
+    border: none;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-decoration: underline; 
+}
+
+/* Styling for popup boxes */
 .popup {
     width: 600px;
     height: 400px;
@@ -221,4 +306,20 @@ img {
     visibility: visible;
     top: 5px;
     transform: translate(-50%, 50%) scale(1);
+}
+
+/* Styling images on second page */
+#moreArtContainer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#img2 {
+    margin-left: 20px;
+}
+
+#img3 {
+    margin-top: 20px;
+    margin-left: 421px;
 }
