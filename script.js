@@ -6,11 +6,15 @@ let artworkImg = document.getElementById("artwork");
 let art = document.getElementById("artImgContainer");
 let submitBtn = document.getElementById("submitGuess");
 let guesesList = document.getElementById("guessesList");
+let correctArtist = document.getElementById("correctArtist");
 let popup = document.getElementById("popup");
 let popupSeeMore = document.getElementById("popupSeeMore");
+let losePopup = document.getElementById("losePopup")
+let popupSeeMoreLose = document.getElementById("popupSeeMoreLose");
 let showInstructions = document.getElementById("showInstructions");
 let instructionPopup = document.getElementById("instructionPopup");
 let closePopupBtn = document.getElementById("closepopup");
+let closeLosePopup = document.getElementById("closeLosePopup");
 let closeInstructionBtn = document.getElementById("closeInstructions");
 
 // Get and display a random artwork from the Art Institute of Chicago API
@@ -92,13 +96,24 @@ artBtn.addEventListener("click", async () => {
 // Displaying guesses and win popup
 
 const openPopup = () => {
-    popup.classList.add("open-popup")
+    popup.classList.add("open-popup");
     popupSeeMore.innerHTML = `<button id="moreArt">See More Art by ${cased_artist}</button>`;
     submitBtn.disabled = true;
 }
 
 closePopupBtn.addEventListener("click", () => {
-    popup.classList.remove("open-popup")
+    popup.classList.remove("open-popup");
+})
+
+const openLosePopup = () => {
+    losePopup.classList.add("open-popup");
+    correctArtist.innerHTML = `The correct artist was ${cased_artist}.`
+    popupSeeMoreLose.innerHTML = `<button id="moreArt">See More Art by ${cased_artist}</button>`;
+
+}
+
+closeLosePopup.addEventListener("click", () => {
+    losePopup.classList.remove("open-popup");
 })
 
 let i = 0;
@@ -110,6 +125,10 @@ submitBtn.addEventListener("click", () => {
     if (artist.includes("Style of ")) {
         artist = artist.replace("Style of ", "").trim();
     }
+    else if (artist.includes("School of ")) {
+        artist = artist.replace("School of ", "").trim();
+    }
+    
     let artistLastName = artist.split(" ").slice(1,).join(" ");
     
     if ((guess.toLowerCase() === artist) || (guess.toLowerCase() === artistLastName)) {
@@ -118,6 +137,7 @@ submitBtn.addEventListener("click", () => {
     i += 1;
     if (i >= 5) {
         submitBtn.disabled = true;
+        openLosePopup();
     }
 
 })

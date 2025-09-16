@@ -90,6 +90,22 @@ img {
     transition: transform 0.4s, top 0.4s;
 }
 
+.losePopup {
+    width: 600px;
+    height: 400px;
+    background: #fff;
+    border: 2px solid black;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
 #moreArt {
     position: absolute;
     bottom: 20px;
@@ -104,6 +120,16 @@ img {
 }
 
 #closepopup {
+    position: absolute;
+    top: 0px;
+    left: 90%;
+    padding: 5px 0;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+#closeLosePopup {
     position: absolute;
     top: 0px;
     left: 90%;
@@ -133,9 +159,25 @@ img {
     line-height: 2.0;
 }
 
+.losePopup h2 {
+    font-size: 75px;
+    font-family: 'Melforine', serif;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+
+.losePopup p {
+    font-size: 35px;
+    font-family: "Gelineos", serif;
+    color: black;
+    line-height: 2.0;
+}
+
 .instructionPopup {
     width: 700px;
-    height: 400px;
+    height: 500px;
     background: #fff;
     border: 2px solid black;
     border-radius: 6px;
