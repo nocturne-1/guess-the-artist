@@ -30,7 +30,7 @@ header {
 
 img {
     width: 843px;
-    max-height: 700px;
+    max-height: 900px;
     object-fit: cover;
     object-position: center;
 }

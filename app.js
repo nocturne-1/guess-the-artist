@@ -35,7 +35,7 @@ async function display_art() {
     let more_art = await see_more_art();
     console.log(more_art);
     if (!more_art || more_art.length === 0) {
-        moreArt.innerHTML = `<p>No more public domain art found for this artist from the Art Institute of Chicago's collection.</p>`;
+        moreArt.innerHTML = `<p>No more art found for this artist from the Art Institute of Chicago's collection.</p>`;
         return;
     }
     let img_id_1 = more_art[0].image_id;

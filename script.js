@@ -19,6 +19,7 @@ let closeLosePopup = document.getElementById("closeLosePopup");
 let closeInstructionBtn = document.getElementById("closeInstructions");
 
 // Get and display a random artwork from the Art Institute of Chicago API
+// Request adapted from text-4-art by @anule (https://github.com/anule/text-4-art/blob/master/helpers.js)
 function get_rand_artwork() {
     let timestamp = Math.floor(Date.now() / 1000);
     let requestArt = {
