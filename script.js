@@ -78,6 +78,7 @@ artBtn.addEventListener("click", async () => {
     art.innerHTML = "";
     let result = await get_rand_artwork();
     cased_artist = result.artist_title;
+    localStorage.setItem("currentArtist", cased_artist);
     artist = result.artist_title.toLowerCase();
     console.log(result);
     let imgUrl = `https://www.artic.edu/iiif/2/${result.image_id}/full/843,/0/default.jpg`;
@@ -129,4 +130,3 @@ closeInstructionBtn.addEventListener("click", () => {
     instructionPopup.classList.remove("open-popup")
 });
 
-localStorage.setItem("currentArtist", cased_artist);

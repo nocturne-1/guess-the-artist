@@ -1,6 +1,8 @@
 //app.js
 let moreArt = document.getElementById("moreArtContainer");
-const cased_artist = localStorage.getItem("currentArtist")
+const true_artist = localStorage.getItem("currentArtist");
+
+console.log(true_artist);
 
 function formatting_function() {
     let split_artist = cased_artist.split(" ");
@@ -8,49 +10,20 @@ function formatting_function() {
     return formatted_artist;
 }
 
-async function see_more_art(someArtist) {
-    if (!someArtist) {
-        return null
-    }
+async function see_more_art() {
     let requestMoreArt = {
-        "resources": "artworks",
-        "fields": [
-            "id",
-            "title",
-            "artist_title",
-            "image_id", 
-            "date_display",
-            "medium_display"
-        ],
-        "boost": false,
+        "q": true_artist,
         "limit": 3,
-            "query": {
-                "bool": {
-                    "filter": [
-                        {
-                            "exists": {
-                            "field": "image_id"
-                            }
-                        },
-                        {
-                            "term": {
-                            "is_public_domain": true
-                            }
-                        },
-                        {
-                            "term": {
-                                "artist_title": someArtist
-                            }
-                        }
-                    ]
-                }
-            }
+        "fields": "id,title,artist_title,image_id",
         };
+        const queryParams = new URLSearchParams(requestMoreArt);
+        const url = `https://api.artic.edu/api/v1/artworks/search?${queryParams}`;
 
-        return fetch("https://api.artic.edu/api/v1/search", {
-        method: "POST",
-        body: JSON.stringify(requestMoreArt),
-        headers: { "Content-Type": "application/json" }
+        return fetch(url, {
+        method: "GET",
+        headers: {
+                "Accept": "application/json"
+            }
     }).then(res => res.json())
       .then(obj => obj.data)
       .catch(e => console.error(e));
@@ -58,15 +31,15 @@ async function see_more_art(someArtist) {
 }
 
 async function display_art() {
-    let more_art = await see_more_art(cased_artist);
+    let more_art = await see_more_art();
     console.log(more_art);
     if (!more_art || more_art.length === 0) {
         moreArt.innerHTML = `<p>No more public domain art found for this artist from the Art Institute of Chicago's collection.</p>`;
         return;
     }
-    let img_id_1 = more_art.data[0].image_id;
-    let img_id_2 = more_art.data[1].image_id;
-    let img_id_3 = more_art.data[2].image_id;
+    let img_id_1 = more_art[0].image_id;
+    let img_id_2 = more_art[1].image_id;
+    let img_id_3 = more_art[2].image_id;
 
     let imgUrl_1 = `https://www.artic.edu/iiif/2/${img_id_1}/full/843,/0/default.jpg`;
     let imgUrl_2 = `https://www.artic.edu/iiif/2/${img_id_2}/full/843,/0/default.jpg`;
